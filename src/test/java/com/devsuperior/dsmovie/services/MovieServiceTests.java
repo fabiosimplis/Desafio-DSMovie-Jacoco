@@ -77,7 +77,7 @@ public class MovieServiceTests {
 	@Test
 	public void findAllShouldReturnPagedMovieDTO() {
 		Pageable pageable = PageRequest.of(0, 10); 
-		Page<MovieDTO> moviesDTO = service.findAll(title, pageable);
+		Page<MovieDTO> moviesDTO = service.searchByTitle(title, pageable);
 
 		Assertions.assertNotNull(moviesDTO);
 		Assertions.assertEquals(moviesDTO.getSize(), 1);

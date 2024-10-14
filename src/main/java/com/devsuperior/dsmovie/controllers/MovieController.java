@@ -34,19 +34,21 @@ public class MovieController {
 
 	@Autowired
 	private MovieService service;
+
     @Operation(
-        description = "Get all movies",
-        summary = "List all movies",
+        description = "Get all movies by name",
+        summary = "List all movies by name",
         responses = {
             @ApiResponse(description = "Ok", responseCode = "200")
         }
     )
 	@GetMapping(produces = "application/json")
-	public Page<MovieDTO> findAll(
+	public Page<MovieDTO> searchByTitle(
 			@RequestParam(value="title", defaultValue = "") String title, 
 			Pageable pageable) {
-		return service.findAll(title, pageable);
+		return service.searchByTitle(title, pageable);
 	}
+
     @Operation(
         description = "Get movie by id",
         summary = "Get movie by id",
