@@ -14,6 +14,7 @@ import com.devsuperior.dsmovie.services.ScoreService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -36,6 +37,7 @@ public class ScoreController {
             @ApiResponse(description = "Unprocessable Entity", responseCode = "422")
         }
     )
+    @SecurityRequirement(name = "bearerAuth")
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
 	@PutMapping(produces = "application/json")
 	public ResponseEntity<MovieDTO> saveScore(@Valid @RequestBody ScoreDTO dto) {
